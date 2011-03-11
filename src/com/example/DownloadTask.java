@@ -5,11 +5,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 public class DownloadTask extends AsyncTask<Integer, Integer, Void>{
-    private Context mContext;
     private NotificationHelper mNotificationHelper;
     public DownloadTask(Context context){
-        mContext = context;
-        mNotificationHelper = new NotificationHelper(mContext);
+        mNotificationHelper = new NotificationHelper(context);
     }
 
     protected void onPreExecute(){
@@ -29,15 +27,18 @@ public class DownloadTask extends AsyncTask<Integer, Integer, Void>{
                     publishProgress(i);
 
                 } catch (InterruptedException e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    e.printStackTrace();
                 }
             }
         return null;
     }
     protected void onProgressUpdate(Integer... progress) {
-             mNotificationHelper.progressUpdate(progress[0]);
-         }
+        //This method runs on the UI thread, it receives progress updates
+        //from the background thread and publishes them to the status bar
+        mNotificationHelper.progressUpdate(progress[0]);
+    }
     protected void onPostExecute(Void result)    {
+        //The task is complete, tell the status bar about it
         mNotificationHelper.completed();
     }
 }

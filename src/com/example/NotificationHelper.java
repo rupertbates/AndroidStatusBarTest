@@ -47,14 +47,14 @@ public class NotificationHelper {
         mNotificationManager.notify(NOTIFICATION_ID, mNotification);
     }
     public void progressUpdate(int percentageComplete) {
-
+        //build up the new status message
         CharSequence contentText = percentageComplete + "% complete";
-
+        //publish it to the status bar
         mNotification.setLatestEventInfo(mContext, mContentTitle, contentText, mContentIntent);
-
         mNotificationManager.notify(NOTIFICATION_ID, mNotification);
     }
     public void completed()    {
-         mNotificationManager.cancel(NOTIFICATION_ID);
+        //remove the notification from the status bar
+        mNotificationManager.cancel(NOTIFICATION_ID);
     }
 }
