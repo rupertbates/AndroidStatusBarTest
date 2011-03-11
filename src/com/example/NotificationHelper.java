@@ -18,6 +18,9 @@ public class NotificationHelper {
         mContext = context;
     }
 
+    /**
+     * Put the notification into the status bar
+     */
     public void createNotification() {
         //get the notification manager
         mNotificationManager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -46,6 +49,11 @@ public class NotificationHelper {
         //show the notification
         mNotificationManager.notify(NOTIFICATION_ID, mNotification);
     }
+
+    /**
+     * Receives progress updates from the background task and updates the status bar notification appropriately
+     * @param percentageComplete
+     */
     public void progressUpdate(int percentageComplete) {
         //build up the new status message
         CharSequence contentText = percentageComplete + "% complete";
@@ -53,6 +61,11 @@ public class NotificationHelper {
         mNotification.setLatestEventInfo(mContext, mContentTitle, contentText, mContentIntent);
         mNotificationManager.notify(NOTIFICATION_ID, mNotification);
     }
+
+    /**
+     * called when the background task is complete, this removes the notification from the status bar.
+     * We could also use this to add a new ‘task complete’ notification
+     */
     public void completed()    {
         //remove the notification from the status bar
         mNotificationManager.cancel(NOTIFICATION_ID);

@@ -1,6 +1,5 @@
 package com.example;
 
-import android.*;
 import android.content.Context;
 import android.os.AsyncTask;
 
