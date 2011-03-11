@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyActivity</string>
+    <string name="download_ticker">Downloading stuff</string>
+    <string name="content_title">Your download is in progress</string>
+</resources>
